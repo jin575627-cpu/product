@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>电力数据分析系统 · 四降两新考核</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    :root{--sidebar:240px;--primary:#409eff;--primary-deep:#2676e8;--page:#eef3f8;--sidebar-bg:#e9f0f6;--panel:#fff;--text:#303d4f;--muted:#7e8c9f;--line:#e2e9f1;--shadow:0 5px 18px rgba(37,70,104,.06);--radius:4px}
+    *{box-sizing:border-box}html{background:var(--page)}body{margin:0;min-width:320px;background:var(--page);color:var(--text);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;-webkit-font-smoothing:antialiased}button{font:inherit}button:focus-visible,a:focus-visible{outline:3px solid rgba(64,158,255,.3);outline-offset:2px}
+    .app{min-height:100vh;display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);transition:grid-template-columns .22s ease}.app.is-collapsed{--sidebar:72px}.sidebar{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--sidebar-bg);border-right:1px solid #dfe8f0;display:flex;flex-direction:column;z-index:5}.brand{height:74px;display:flex;align-items:center;gap:12px;padding:0 20px;color:#202b37;font-size:21px;font-weight:700;white-space:nowrap}.brand i{font-size:28px;color:var(--primary-deep)}.app.is-collapsed .brand{justify-content:center;padding:0}.app.is-collapsed .brand-name,.app.is-collapsed .nav-text,.app.is-collapsed .nav-chevron{display:none}
+    .nav{padding:6px 0 16px}.nav-group{height:52px;padding:0 26px;display:flex;align-items:center;gap:14px;color:#4d5e70;font-size:16px;white-space:nowrap;border-left:3px solid transparent;cursor:pointer;transition:.16s;background:transparent;border-top:0;border-right:0;border-bottom:0;width:100%;text-align:left;text-decoration:none}.nav-group i{width:20px;font-size:19px;color:#637587}.nav-group:hover{background:#f1f6fa;color:#2676e8}.nav-group.is-active{background:#f7fbff;color:#2176ed;border-left-color:#2176ed}.nav-group.is-active i{color:#2176ed}.nav-section-label{height:38px;display:flex;align-items:center;padding:0 26px;color:#8a98a8;font-size:12px;letter-spacing:.08em;white-space:nowrap}.app.is-collapsed .nav-section-label{visibility:hidden}.sidebar-foot{margin-top:auto;padding:16px}.collapse-btn{width:100%;height:42px;border:1px solid #d4e0ea;background:rgba(255,255,255,.6);border-radius:4px;color:#5f7184;cursor:pointer}
+    .main{min-width:0}.topbar{height:74px;padding:0 28px;display:flex;align-items:center;background:#edf3f8;border-bottom:1px solid #e2e9f1;position:sticky;top:0;z-index:4}.menu-btn{width:42px;height:42px;border:0;background:transparent;color:#4d5967;font-size:24px;cursor:pointer;margin-right:16px}.top-title{font-size:20px;font-weight:600}.breadcrumb{margin-left:16px;color:#95a1af;font-size:13px}.top-actions{margin-left:auto;display:flex;align-items:center;gap:18px}.notice{position:relative;width:38px;height:38px;border:0;background:transparent;font-size:20px;color:#596878;cursor:pointer}.notice:after{content:"";position:absolute;right:7px;top:7px;width:7px;height:7px;background:#f56c6c;border:2px solid var(--page);border-radius:50%}.user{display:flex;align-items:center;gap:9px;color:#4d5e70;font-size:14px}.user img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 7px rgba(53,78,105,.15)}
+    .content{padding:20px 24px 30px}.page-head{display:flex;align-items:center;margin-bottom:14px}.page-head h1{font-size:20px;margin:0;font-weight:600}.page-head p{margin:0 0 0 14px;color:#98a4b2;font-size:13px}.panel{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius)}
+    .assessment-report{overflow:hidden}.assessment-section{padding:18px 20px 16px}.assessment-table-wrap{max-height:calc(100vh - 175px);overflow:auto;border:1px solid #dbe5ef;border-radius:5px;background:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}.assessment-table{width:100%;min-width:1080px;border-spacing:0;border-collapse:separate;table-layout:fixed;font-size:12px;color:#3d4e62}.assessment-table caption{padding:14px 16px;background:#315f91;color:#fff;font-size:16px;font-weight:600;letter-spacing:.02em;text-align:center;caption-side:top}.assessment-table th,.assessment-table td{padding:8px 8px;text-align:center;vertical-align:middle;border-right:1px solid #dfe7ef;border-bottom:1px solid #dfe7ef;line-height:1.4}.assessment-table thead th{position:sticky;top:0;z-index:8;background:#edf4fb;color:#344b63;font-weight:600;border-bottom-color:#cbd9e7}.assessment-table tbody tr:hover td:not(.category-cell){background:#f5faff}.assessment-table tbody tr:nth-child(even) td:not(.category-cell):not(.primary-cell):not(.secondary-cell){background:#fbfdff}.assessment-table th:last-child,.assessment-table td:last-child{border-right:0}.assessment-table .col-category{width:80px}.assessment-table .col-primary{width:130px}.assessment-table .col-secondary{width:170px}.assessment-table .col-factor{width:190px}.assessment-table .col-station{width:85px}.category-cell{font-size:13px;font-weight:700;color:#29435e}.category-cell small{display:block;margin-top:5px;font-size:11px;font-weight:500}.category-overall{background:#eaf3ff}.category-breakdown{background:#edf8f4}.category-special{background:#fff5e8}.primary-cell{background:#f8fbfe;font-weight:600;color:#40566d}.secondary-cell{background:#fbfcfe;color:#53677b}.factor-cell{text-align:left!important;color:#33495f}.metric-value{font-variant-numeric:tabular-nums;color:#273f58}.metric-unit{margin-left:2px;color:#92a0ae;font-size:10px}.district-column{background:#f1f7fd!important;font-weight:600}.summary-label{padding:10px 16px!important;text-align:right!important;background:#f0f5fa!important;color:#354b62!important;font-weight:600}.summary-row td{background:#f8fbfe;font-weight:600}.summary-row.is-total td{background:#eef6ff;color:#246fc2}.summary-row.is-rank td{color:#6d5a2f}.summary-row.is-bonus td{color:#3b765d}.mobile-overlay{display:none}
+    @media(max-width:1320px) and (min-width:761px){:root{--sidebar:72px}.brand{justify-content:center;padding:0}.brand-name,.nav-text{display:none}.nav-section-label{visibility:hidden}}
+    @media(max-width:1100px){:root{--sidebar:72px}.breadcrumb{display:none}}
+    @media(max-width:760px){:root{--sidebar:0px}.app,.app.is-collapsed{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;width:240px;transform:translateX(-100%);transition:transform .22s;box-shadow:12px 0 32px rgba(28,50,74,.18)}.app.mobile-nav-open .sidebar{transform:translateX(0)}.app.mobile-nav-open .brand{justify-content:flex-start;padding:0 20px}.app.mobile-nav-open .brand-name,.app.mobile-nav-open .nav-text{display:block}.mobile-overlay{position:fixed;inset:0;z-index:4;background:rgba(29,43,58,.34)}.app.mobile-nav-open .mobile-overlay{display:block}.topbar{height:62px;padding:0 12px}.top-title{font-size:17px}.top-actions{gap:7px}.user span,.user>i{display:none}.content{padding:14px 10px 24px}.page-head p{display:none}.assessment-section{padding:12px}.assessment-table-wrap{max-height:calc(100vh - 150px)}.assessment-table caption{text-align:left;font-size:14px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="sidebar" aria-label="主导航">
+    <div class="brand"><i class="ri-flashlight-fill" aria-hidden="true"></i><span class="brand-name">电力数据分析系统</span></div>
+    <nav class="nav">
+      <div class="nav-section-label">业务中心</div>
+      <button class="nav-group" type="button"><i class="ri-home-5-line"></i><span class="nav-text">综合概览</span></button>
+      <button class="nav-group" type="button"><i class="ri-dashboard-line"></i><span class="nav-text">用能监测</span></button>
+      <a class="nav-group" href="electricity-customer-analysis.html"><i class="ri-line-chart-line"></i><span class="nav-text">用电客户分析</span></a>
+      <a class="nav-group is-active" href="four-reductions-two-new-report.html" aria-current="page"><i class="ri-file-list-3-line"></i><span class="nav-text">四降两新考核</span></a>
+      <button class="nav-group" type="button"><i class="ri-money-cny-box-line"></i><span class="nav-text">电费分析</span></button>
+      <button class="nav-group" type="button"><i class="ri-pulse-line"></i><span class="nav-text">负荷分析</span></button>
+      <div class="nav-section-label">管理中心</div>
+      <button class="nav-group" type="button"><i class="ri-file-chart-line"></i><span class="nav-text">数据报表</span></button>
+      <button class="nav-group" type="button"><i class="ri-settings-3-line"></i><span class="nav-text">系统管理</span></button>
+    </nav>
+    <div class="sidebar-foot"><button class="collapse-btn" id="collapse-btn" type="button" aria-label="折叠侧栏"><i class="ri-menu-fold-line"></i></button></div>
+  </aside>
+  <button class="mobile-overlay" id="mobile-overlay" type="button" aria-label="关闭导航"></button>
+  <main class="main">
+    <header class="topbar"><button class="menu-btn" id="menu-btn" type="button" aria-label="切换菜单"><i class="ri-menu-line"></i></button><span class="top-title">四降两新考核</span><span class="breadcrumb">工作考核 / 2026年6月</span><div class="top-actions"><button class="notice" type="button" aria-label="通知"><i class="ri-notification-3-line"></i></button><div class="user"><span>测试用户</span><img src="assets/avatar.png" alt="测试用户头像"><i class="ri-arrow-down-s-line"></i></div></div></header>
+    <div class="content">
+      <div class="page-head"><h1>台州路桥工作考核</h1><p>四降两新工作指标综合报告</p></div>
+      <section class="assessment-report panel" id="assessment-report" aria-label="台州路桥四降两新考核表">
+        <section class="assessment-section"><div class="assessment-table-wrap" id="assessment-table" tabindex="0" aria-label="台州路桥四降两新工作考核指标表"></div></section>
+      </section>
+    </div>
+  </main>
+</div>
+<script id="assessment-model">
+  (()=>{
+    const assessmentReport={
+      title:'台州路桥四降两新工作考核报告',period:'2026年6月',scope:'台州市路桥区 · 5个供电所 + 区级汇总',
+      stations:[{name:'路南供电所',rank:2,score:2.44,bonus:2},{name:'路西供电所',rank:3,score:2.31,bonus:1},{name:'金清供电所',rank:4,score:2.18,bonus:1},{name:'蓬街供电所',rank:5,score:.72,bonus:0},{name:'新桥供电所',rank:1,score:2.76,bonus:2}],
+      categories:[
+        {key:'overall',name:'总体指标',weight:35,metrics:[
+          {group:'平均电价下降幅度（20%）',label:'上月平均电价',unit:'元/kWh',values:[.6802,.6964,.7067,.6522,.7205]},
+          {group:'平均电价下降幅度（20%）',label:'当月平均电价',unit:'元/kWh',values:[.6668,.6860,.6913,.7083,.7079]},
+          {group:'平均电价下降幅度（20%）',label:'高压平均电价环比压降率',unit:'%',values:[1.96,1.48,2.18,-8.61,1.75]},
+          {group:'平均电价下降幅度（20%）',label:'指标积分',unit:'分',values:[3,1,4,0,2]},
+          {group:'电费压降总金额（15%）',label:'工商业用户电费压降总金额',unit:'万元',values:[3.06,14.53,65.14,32.39,211]},
+          {group:'电费压降总金额（15%）',label:'指标积分',unit:'分',values:[0,1,3,2,4]}
+        ]},
+        {key:'breakdown',name:'分项指标',weight:35,metrics:[
+          {group:'基本电费压降情况（10%）',label:'上月基本电费占比',unit:'%',values:[6.66,9.69,12.97,20.68,11.92]},
+          {group:'基本电费压降情况（10%）',label:'当月基本电费占比',unit:'%',values:[5.82,8.41,11.76,19.62,10.45],demo:true},
+          {group:'基本电费压降情况（10%）',label:'环比压降率',unit:'%',values:[12.65,13.21,9.34,5.13,12.32],demo:true},
+          {group:'基本电费压降情况（10%）',label:'指标积分',unit:'分',values:[3,4,2,0,1],demo:true},
+          {group:'峰谷电占比情况（10%）',label:'上月高压谷电量占比',unit:'%',values:[25.45,28.58,34.37,41.81,31.80]},
+          {group:'峰谷电占比情况（10%）',label:'当月高压谷电量占比',unit:'%',values:[26.11,29.25,35.48,42.16,32.74],demo:true},
+          {group:'峰谷电占比情况（10%）',label:'环比增长率',unit:'%',values:[2.59,2.34,3.23,.84,2.96],demo:true},
+          {group:'峰谷电占比情况（10%）',label:'指标积分',unit:'分',values:[2,1,4,0,3],demo:true},
+          {group:'力调电费金额（5%）',label:'当月力调电费金额',unit:'万元',values:[9.20,11.80,8.60,121.50,13.40],demo:true},
+          {group:'力调电费金额（5%）',label:'指标积分',unit:'分',values:[2,1,3,0,4],demo:true},
+          {group:'力调电费压降情况（10%）',label:'上月力调电费金额',unit:'万元',values:[13.80,17.16,13.04,184.15,19.21]},
+          {group:'力调电费压降情况（10%）',label:'当月力调电费金额',unit:'万元',values:[9.20,11.80,8.60,121.50,13.40],demo:true},
+          {group:'力调电费压降情况（10%）',label:'环比压降率',unit:'%',values:[33.33,31.24,34.05,34.02,30.25],demo:true},
+          {group:'力调电费压降情况（10%）',label:'指标积分',unit:'分',values:[0,2,4,1,3]}
+        ]},
+        {key:'special',name:'专项指标',weight:30,metrics:[
+          {group:'参与共同走访情况（10%）',label:'1个月内参与共同走访户数',unit:'户',values:[2,3,1,2,1],demo:true},
+          {group:'参与共同走访情况（10%）',label:'指标积分',unit:'分',values:[2,3,1,2,1],demo:true},
+          {group:'参与专项行动情况（10%）',label:'1个月内参与专项行动次数',unit:'次',values:[1,2,2,1,3],demo:true},
+          {group:'参与专项行动情况（10%）',label:'指标积分',unit:'分',values:[2,4,4,2,6],demo:true},
+          {group:'典型案例情况（10%）',label:'入选典型案例数量',unit:'项',values:[1,1,2,0,2],demo:true},
+          {group:'典型案例情况（10%）',label:'案例数量积分',unit:'分',values:[1,1,2,0,2],demo:true},
+          {group:'典型案例情况（10%）',label:'入选典型案例质量',unit:'分',values:[1,2,2,0,3],demo:true},
+          {group:'典型案例情况（10%）',label:'案例质量积分',unit:'分',values:[1,2,2,0,3],demo:true}
+        ]}
+      ]
+    };
+    const secondaryByGroup={
+      '平均电价下降幅度（20%）':'高压平均电价环比压降率（20%）',
+      '电费压降总金额（15%）':'工商业用户电费压降总金额（15%）',
+      '基本电费压降情况（10%）':'基本电费占比压降率（10%）',
+      '峰谷电占比情况（10%）':'高压工商业谷电量占比的环比增长率（10%）',
+      '力调电费金额（5%）':'工商业用户力调电费金额（5%）',
+      '力调电费压降情况（10%）':'工商业用户力调电费金额压降率（包括高压和低压）（10%）',
+      '参与共同走访情况（10%）':'参与共同走访户数（10%）',
+      '参与专项行动情况（10%）':'参与专项行动次数（10%）'
+    };
+    assessmentReport.categories.forEach(category=>category.metrics.forEach(metric=>{
+      metric.secondary=metric.group==='典型案例情况（10%）'
+        ?(/质量/.test(metric.label)?'典型案例质量（5%）':'典型案例数量（5%）')
+        :secondaryByGroup[metric.group];
+    }));
+    const round=(value,digits=2)=>Number(value.toFixed(digits)),sumUnits=new Set(['万元','户','次','项','分']);
+    assessmentReport.categories.forEach(category=>category.metrics.forEach(metric=>{
+      const total=metric.values.reduce((sum,value)=>sum+value,0),districtValue=sumUnits.has(metric.unit)?round(total):round(total/metric.values.length,metric.unit==='元/kWh'?4:2);
+      metric.values.push(districtValue);
+    }));
+    assessmentReport.stations.push({name:'路桥区',rank:'—',score:round(assessmentReport.stations.reduce((sum,station)=>sum+station.score,0)),bonus:assessmentReport.stations.reduce((sum,station)=>sum+station.bonus,0),district:true});
+    assessmentReport.summary={
+      totalScore:assessmentReport.stations.map(station=>station.score),
+      rank:assessmentReport.stations.map(station=>station.rank),
+      bonus:assessmentReport.stations.map(station=>station.bonus)
+    };
+    window.__assessmentReportData=assessmentReport;
+  })();
+</script>
+<script>
+  (()=>{
+    const $=(selector,root=document)=>root.querySelector(selector),data=window.__assessmentReportData,app=$('#app');
+    function formatValue(value,unit){if(typeof value!=='number')return '<span class="metric-value">'+value+'</span>';const formatted=unit==='元/kWh'?value.toFixed(4):unit==='万元'?value.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}):unit==='%'?value.toFixed(2):Number.isInteger(value)?String(value):value.toFixed(2);return '<span class="metric-value">'+formatted+'</span><span class="metric-unit">'+unit+'</span>'}
+    function spanLength(metrics,index,key){if(index>0&&key(metrics[index-1])===key(metrics[index]))return 0;let length=1;while(index+length<metrics.length&&key(metrics[index+length])===key(metrics[index]))length++;return length}
+    function renderRows(){return data.categories.map(category=>category.metrics.map((metric,index)=>{const categoryCell=index===0?'<td class="category-cell category-'+category.key+'" rowspan="'+category.metrics.length+'">'+category.name+'<small>'+category.weight+'%</small></td>':'',groupSpan=spanLength(category.metrics,index,item=>item.group),secondarySpan=spanLength(category.metrics,index,item=>item.group+'|'+item.secondary),groupCell=groupSpan?'<td class="primary-cell" rowspan="'+groupSpan+'">'+metric.group+'</td>':'',secondaryCell=secondarySpan?'<td class="secondary-cell" rowspan="'+secondarySpan+'">'+metric.secondary+'</td>':'';return '<tr>'+categoryCell+groupCell+secondaryCell+'<td class="factor-cell">'+metric.label+'</td>'+metric.values.map((value,valueIndex)=>'<td class="'+(valueIndex===metric.values.length-1?'district-column':'')+'">'+formatValue(value,metric.unit)+'</td>').join('')+'</tr>'}).join('')).join('')}
+    function renderTable(){const stationHeaders=data.stations.map(station=>'<th class="'+(station.district?'district-column':'')+'" scope="col">'+station.name+'</th>').join(''),summaryRows=[['供电所总积分','totalScore','is-total','分'],['供电所积分排名','rank','is-rank','名'],['供电所加分值','bonus','is-bonus','分']].map(item=>'<tr class="summary-row '+item[2]+'"><td class="summary-label" colspan="4">'+item[0]+'</td>'+data.summary[item[1]].map((value,valueIndex)=>'<td class="'+(valueIndex===data.summary[item[1]].length-1?'district-column':'')+'">'+formatValue(value,item[3])+'</td>').join('')+'</tr>').join('');$('#assessment-table').innerHTML='<table class="assessment-table"><caption>'+data.title.replace('报告','指标')+' · '+data.period+'</caption><colgroup><col class="col-category"><col class="col-primary"><col class="col-secondary"><col class="col-factor">'+data.stations.map(station=>'<col class="col-station'+(station.district?' district-column':'')+'">').join('')+'</colgroup><thead><tr><th scope="col">指标分类</th><th scope="col">一级指标</th><th scope="col">二级指标</th><th scope="col">计算因子</th>'+stationHeaders+'</tr></thead><tbody>'+renderRows()+'</tbody><tfoot>'+summaryRows+'</tfoot></table>'}
+    function render(){renderTable()}
+    $('#collapse-btn').addEventListener('click',()=>app.classList.toggle('is-collapsed'));$('#menu-btn').addEventListener('click',()=>innerWidth<=760?app.classList.toggle('mobile-nav-open'):app.classList.toggle('is-collapsed'));$('#mobile-overlay').addEventListener('click',()=>app.classList.remove('mobile-nav-open'));window.__assessmentReport={render};render();
+  })();
+</script>
+</body>
+</html>
